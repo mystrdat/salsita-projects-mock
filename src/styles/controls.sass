@@ -1,0 +1,46 @@
+button
+  +unselectable
+  appearance: none
+  cursor: pointer
+
+  // Mobile nav
+  &.hamburger
+    +hide-text
+    display: block
+    position: relative
+    width: 60px
+    height: 60px
+    padding: 0
+    border: 0
+    background: transparent
+
+    &:focus
+      outline: none
+
+    &:before,
+    &:after,
+    span
+      +pseudo
+      +abs(20px 20px 18px)
+      height: 2px
+      background: #fff
+      transition: all 0.2s ease-out
+
+    &:before
+      transform-origin: 0% 100%
+
+    &:after
+      top: 36px
+      transform-origin: 0% 0%
+
+    span
+      content: none
+      top: 28px
+
+    &.active
+      &:before
+        transform: rotate(45deg)
+      &:after
+        transform: rotate(-45deg)
+      span
+        transform: translateX(-200%)

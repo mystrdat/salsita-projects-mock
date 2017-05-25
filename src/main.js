@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import Meta from 'vue-meta'
 import { MediaQueries } from 'vue-media-queries'
+import ScrollTo from 'vue-scrollto'
 import App from './App'
 import router from './router'
 
@@ -10,8 +11,9 @@ import router from './router'
 const mediaQueries = new MediaQueries()
 Vue.use(mediaQueries)
 Vue.use(Meta)
+Vue.use(ScrollTo)
 Vue.config.productionTip = false
-Vue.config.ignoredElements = ['app-container', 'view-container']
+Vue.config.ignoredElements = ['app-container', 'view-container', 'grid-container']
 
 new Vue({
   el: '#app',

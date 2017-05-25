@@ -1,0 +1,54 @@
+*, *:before, *:after
+  box-sizing: inherit
+
+html
+  height: 100%
+  position: relative
+  box-sizing: border-box
+  font-size: $fontScale
+  text-size-adjust: 100%
+
+body
+  min-width: $documentMinWidth
+  height: 100%
+  font-family: $fontFamily
+  font-size: $fontM
+  font-weight: $fontLight
+  color: $colorFont
+
+ul, ol
+  list-style: none
+  padding: 0
+
+img
+  max-width: 100%
+  width: auto
+  height: auto
+
+p, li
+  line-height: 1.5
+
+p
+  margin: 0 0 2*$base 0
+
+a
+  cursor: pointer
+
+button, input, textarea
+  font-family: inherit
+  font-weight: inherit
+
+*:focus
+  outline: none
+
+[disabled]
+  cursor: default
+
+.hidden, [hidden]
+  display: none
+
+svg
+  display: block
+
+// External
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700')

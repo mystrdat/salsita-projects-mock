@@ -22,6 +22,12 @@ export default {
 </script>
 
 <style lang="sass">
+@import 'styles/shared'
+@import 'styles/base'
+@import 'styles/icons'
+@import 'styles/effects'
+@import 'styles/controls'
+
 app-container
   display: block
   height: 100%
@@ -36,4 +42,32 @@ view-container
   bottom: 0
   left: 0
   overflow: auto
+
+section
+  > div
+    +clearfix
+    padding: 10*$base 0
+    max-width: $contentMaxWidth
+    margin: 0 auto
+
+    +media('<=desktop')
+      padding: 3*$base 1.5*$base
+
+  h2
+    margin: 0 0 3*$base 0
+    font-size: $fontXXL
+    font-weight: $fontLight
+
+    +media('<=mobile')
+      font-size: rem(30)
+      text-align: center
+
+  h3
+    margin: 0 0 3*$base 0
+    font-size: $fontXL
+    font-weight: $fontRegular
+
+    +media('<=mobile')
+      font-size: $fontL
+      text-align: center
 </style>

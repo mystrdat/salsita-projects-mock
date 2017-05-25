@@ -1,7 +1,6 @@
 <template>
   <app-content-landing>
     <h1 slot="jumbotron">{{ msg }}</h1>
-    <span slot="introduction" v-if="$mq.resize && $mq.below('600px')">MQ width < 600px</span>
   </app-content-landing>
 </template>
 
