@@ -1,6 +1,9 @@
 <template>
   <header>
-    header
+    <ul>
+      <li is="router-link" to="/">Home</li>
+      <router-link to="/react">React</router-link>
+    </ul>
   </header>
 </template>
 
@@ -10,4 +13,8 @@ export default {
 }
 </script>
 
-<style src="./AppHeader.sass" lang="sass" scoped></style>
+<style lang="sass" scoped>
+header
+  display: block
+  overflow: hidden
+</style>

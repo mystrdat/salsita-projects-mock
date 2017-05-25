@@ -6,13 +6,16 @@
 
 <script>
 export default {
-  name: 'app-content',
+  name: 'page-react',
+  metaInfo: {
+    title: 'REACT'
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to React page!'
     }
   }
 }
 </script>
 
-<style src="./AppContent.sass" lang="sass" scoped></style>
+<style lang="sass" scoped></style>

@@ -21,4 +21,19 @@ export default {
 }
 </script>
 
-<style src="./App.sass" lang="sass"></style>
+<style lang="sass">
+app-container
+  display: block
+  height: 100%
+  position: relative
+  overflow: hidden
+
+view-container
+  display: block
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  overflow: auto
+</style>

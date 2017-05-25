@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import AppContent from '@/components/AppContent'
+import PageHome from '@/components/pages/PageHome'
+import PageReact from '@/components/pages/PageReact'
 
 Vue.use(Router)
 
@@ -8,8 +9,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Index',
-      component: AppContent
+      name: 'Home',
+      component: PageHome
+    },
+    {
+      path: '/react',
+      name: 'React',
+      component: PageReact
     }
   ]
 })

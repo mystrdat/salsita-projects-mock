@@ -10,4 +10,7 @@ export default {
 }
 </script>
 
-<style src="./AppFooter.sass" lang="sass" scoped></style>
+<style lang="sass" scoped>
+footer
+  display: block
+</style>
