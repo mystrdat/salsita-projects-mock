@@ -1,7 +1,7 @@
 <template>
   <header>
 
-    <div class="desktop" v-if="$mq.resize && $mq.above('767px')">
+    <div class="desktop" v-if="$mq.resize && $mq.above('768px')">
       <router-link class="salsita" to="/">Salsita Software<dynamic-logo></dynamic-logo></router-link>
       <nav>
         <ul>
@@ -16,40 +16,50 @@
       </nav>
     </div>
 
-    <div class="mobile" v-if="$mq.resize && $mq.below('768px')">
+    <div class="mobile" v-if="$mq.resize && $mq.below('767px')">
       <router-link class="salsita" to="/">Salsita Software<dynamic-logo></dynamic-logo></router-link>
-      <button class="hamburger">Open navigation</button>
-      <button class="contact" v-scroll-to="contactScrollTo">Contact us</button>
-      <nav>
-        <ul>
-          <li><a href="//www.salsitasoft.com/javascript-engineers"><span>Skilled JavaScript Engineers</span></a></li>
-          <li><a href="//www.salsitasoft.com/mobile-and-web-apps"><span>Mobile & Web Apps</span></a></li>
-          <li><a href="//www.salsitasoft.com/clients"><span>Clients</span></a></li>
-          <li><a href="//www.salsitasoft.com/about-us"><span>About Us</span></a></li>
-          <li><a href="//www.salsitasoft.com/careers"><span>Careers</span></a></li>
-          <li><a href="//blog.salsitasoft.com/"><span>Blog</span></a></li>
-          <li><a v-scroll-to="contactScrollTo"><span>Contact Us</span></a></li>
-        </ul>
-      </nav>
+      <button class="hamburger" @click="toggleNav" v-bind:class="{ active: mobileVisible }">Open navigation<span></span></button>
+      <button class="contact" v-scroll-to="contactScrollTo">Contact us<contact-icon></contact-icon></button>
+      <transition name="nav-slide">
+        <nav v-if="mobileVisible">
+          <ul>
+            <li><a href="//www.salsitasoft.com/javascript-engineers"><span>Skilled JavaScript Engineers</span></a></li>
+            <li><a href="//www.salsitasoft.com/mobile-and-web-apps"><span>Mobile & Web Apps</span></a></li>
+            <li><a href="//www.salsitasoft.com/clients"><span>Clients</span></a></li>
+            <li><a href="//www.salsitasoft.com/about-us"><span>About Us</span></a></li>
+            <li><a href="//www.salsitasoft.com/careers"><span>Careers</span></a></li>
+            <li><a href="//blog.salsitasoft.com/"><span>Blog</span></a></li>
+            <li><a v-scroll-to="contactScrollTo"><span>Contact Us</span></a></li>
+          </ul>
+        </nav>
+      </transition>
     </div>
 
   </header>
 </template>
 
 <script>
-import DynamicLogo from '@/components/DynamicLogo'
+import DynamicLogo from '@/components/elements/DynamicLogo'
+import ContactIcon from '@/components/elements/ContactIcon'
 
 export default {
   name: 'app-header',
   components: {
-    DynamicLogo
+    DynamicLogo,
+    ContactIcon
   },
   data () {
     return {
+      mobileVisible: false,
       contactScrollTo: {
         el: 'section.contact',
         container: 'app-container > view-container:first-of-type'
       }
+    }
+  },
+  methods: {
+    toggleNav () {
+      this.mobileVisible = !this.mobileVisible
     }
   }
 }
@@ -71,14 +81,12 @@ header
     background: #111
 
   > div
-    +clearfix
     height: 100%
     max-width: $contentMaxWidth
+    padding: 0 1.5*$base
     margin: 0 auto
 
-    +media('<=desktop')
-      padding: 0 1.5*$base
-
+    // Desktop
     &.desktop
       +align(left center)
 
@@ -101,6 +109,7 @@ header
             position: relative
             white-space: nowrap
             text-decoration: none
+            will-change: transform
 
             // Underline effect
             &:after
@@ -159,9 +168,50 @@ header
             &:after
               right: 40px
 
+    // Mobile
     &.mobile
       display: flex
       justify-content: space-between
+      padding: 0
+
+      .hamburger
+        order: 1
+
+      .salsita
+        width: 80px
+        order: 2
+
+      .contact
+        order: 3
+
+      nav
+        +fix(0 $headerHeight)
+        +scrollable
+        width: 100%
+        height: calc(100vh - #{$headerHeight})
+        background: #141414
+        will-change: transform
+
+        +media('<tablet')
+          top: $headerHeightMobile
+          height: calc(100vh - #{$headerHeightMobile})
+
+        ul
+          +align(left top, 0, col)
+
+        li
+          width: 100%
+          line-height: 59px
+          border-bottom: 1px solid #333
+
+        a
+          display: block
+          padding: 0 1.5*$base
+          text-decoration: none
+          color: #888
+
+          &:hover
+            color: #fafafa
 
     .salsita
       +hide-text

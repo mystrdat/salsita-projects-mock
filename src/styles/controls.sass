@@ -2,6 +2,8 @@ button
   +unselectable
   appearance: none
   cursor: pointer
+  background: none
+  border: 0
 
   // Mobile nav
   &.hamburger
@@ -44,3 +46,30 @@ button
         transform: rotate(-45deg)
       span
         transform: translateX(-200%)
+
+  // Contact us
+  &.contact
+    +hide-text
+    display: block
+    width: 60px
+    height: 60px
+    position: relative
+    cursor: pointer
+
+    svg
+      +abs(50%)
+      height: 26px
+      margin: -13px 0 0 -17px
+
+    .bubble
+      fill: #e93335
+
+    .dot
+      fill: #fff
+
+    .dot2
+      opacity: 0.6
+
+    .dot3
+      opacity: 0.4
+

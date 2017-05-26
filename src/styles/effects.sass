@@ -12,3 +12,17 @@
   66%
     transform: translateX(0%)
     opacity: 1
+
+// Mobile nav slide
+.nav-slide-enter-active, .nav-slide-leave-active
+  transition-property: transform
+  transition-duration: $transitionDuration
+
+.nav-slide-enter-active
+  transition-timing-function: ease-out
+
+.nav-slide-leave-active
+  transition-timing-function: ease-in
+
+.nav-slide-enter, .nav-slide-leave-to
+  transform: translateX(-100%)

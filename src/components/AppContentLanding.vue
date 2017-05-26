@@ -47,7 +47,7 @@ export default {
 section
   > div
     +clearfix
-    padding: 10*$base 0
+    padding: 10*$base 1.5*$base
     max-width: $contentMaxWidth
     margin: 0 auto
 

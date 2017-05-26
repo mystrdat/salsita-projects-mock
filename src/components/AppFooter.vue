@@ -83,7 +83,7 @@ footer
       > div
         +align(center center)
         height: 100%
-        padding: 2*$base 0
+        padding: 2*$base 1.5*$base
 
         +media('<=desktop')
           padding: 3*$base 1.5*$base
@@ -172,10 +172,7 @@ footer
       > div
         +align(left center)
         height: 100%
-        padding: 0
-
-        +media('<=desktop')
-          padding: 0 1.5*$base
+        padding: 0 1.5*$base
 
         +media('<=mobile')
           flex-direction: column

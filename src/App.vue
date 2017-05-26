@@ -12,11 +12,39 @@
 import AppHeader from '@/components/AppHeader'
 import AppFooter from '@/components/AppFooter'
 
+const skrollr = (process.browser) && require('skrollr')
+let s // skrollr instance
+
 export default {
   name: 'App',
   components: {
     AppHeader,
     AppFooter
+  },
+  mounted () {
+    if (process.browser) {
+      this.manageSkrollr()
+      window.addEventListener('resize', this.manageSkrollr)
+    }
+  },
+  methods: {
+    initSkrollr () {
+      s = skrollr.init({
+        forceHeight: false,
+        smoothScrolling: false,
+        mobileCheck: () => false
+      })
+    },
+    manageSkrollr () {
+      if (!skrollr.get() && this.$mq.above('768px')) {
+        this.initSkrollr()
+      } else if (skrollr.get() && this.$mq.below('767px')) {
+        s.destroy()
+      }
+    }
+  },
+  beforeDestroy () {
+    skrollr.get() && s.destroy()
   }
 }
 </script>
@@ -32,7 +60,6 @@ app-container
   display: block
   height: 100%
   position: relative
-  overflow: hidden
 
 view-container
   display: block
@@ -41,17 +68,13 @@ view-container
   right: 0
   bottom: 0
   left: 0
-  overflow: auto
 
 section
   > div
     +clearfix
-    padding: 10*$base 0
+    padding: 10*$base 1.5*$base
     max-width: $contentMaxWidth
     margin: 0 auto
-
-    +media('<=desktop')
-      padding: 3*$base 1.5*$base
 
   h2
     margin: 0 0 3*$base 0
