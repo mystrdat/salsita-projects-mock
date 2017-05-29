@@ -2,7 +2,7 @@
   <footer>
     <section class="work-together">
       <div>
-        <a href="//www.salsitasoft.com/contact-us">Let&#39;s work together</a>
+        <a href="//www.salsitasoft.com/contact-us" v-bind="skrollrWorkTogether">Let&#39;s work together</a>
       </div>
     </section>
     <section class="javascript-experts">
@@ -30,7 +30,16 @@
 
 <script>
 export default {
-  name: 'app-footer'
+  name: 'app-footer',
+  data () {
+    return {
+      skrollrWorkTogether: {
+        'data-anchor-target': 'section.work-together',
+        'data-bottom-top': 'transform: translateY(-150%); opacity: 0',
+        'data--100-bottom-bottom': 'transform: translateY(-0%); opacity: 1'
+      }
+    }
+  }
 }
 </script>
 

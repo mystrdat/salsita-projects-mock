@@ -1,10 +1,11 @@
 <template>
-  <app-container>
+  <app-container v-bind:class="viewClass">
     <view-container>
       <app-header></app-header>
       <router-view></router-view>
       <app-footer></app-footer>
     </view-container>
+    <portal-target name="app-root"></portal-target>
   </app-container>
 </template>
 
@@ -17,17 +18,37 @@ let s // skrollr instance
 
 export default {
   name: 'App',
+  watch: {
+    '$route' () {
+      this.setViewClass(this.$route.matched)
+      skrollr.get() && setTimeout(() => s.refresh(), 0)
+    }
+  },
   components: {
     AppHeader,
     AppFooter
   },
   mounted () {
+    this.setViewClass(this.$route.matched)
     if (process.browser) {
       this.manageSkrollr()
       window.addEventListener('resize', this.manageSkrollr)
     }
   },
+  data () {
+    return {
+      viewClass: 'home'
+    }
+  },
   methods: {
+    setViewClass (matchedRoutes) {
+      console.log(matchedRoutes)
+      this.viewClass = Array.from(matchedRoutes).reduce((chain, route) => {
+        if (route.name) {
+          return chain + ` ${route}`
+        }
+      })
+    },
     initSkrollr () {
       s = skrollr.init({
         forceHeight: false,
@@ -58,16 +79,10 @@ export default {
 
 app-container
   display: block
-  height: 100%
   position: relative
 
 view-container
   display: block
-  position: absolute
-  top: 0
-  right: 0
-  bottom: 0
-  left: 0
 
 section
   > div

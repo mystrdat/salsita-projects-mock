@@ -14,15 +14,30 @@
     opacity: 1
 
 // Mobile nav slide
-.nav-slide-enter-active, .nav-slide-leave-active
+.nav-mobile-enter-active, .nav-mobile-leave-active
   transition-property: transform
   transition-duration: $transitionDuration
 
-.nav-slide-enter-active
+.nav-mobile-enter-active
   transition-timing-function: ease-out
 
-.nav-slide-leave-active
+.nav-mobile-leave-active
   transition-timing-function: ease-in
 
-.nav-slide-enter, .nav-slide-leave-to
+.nav-mobile-enter, .nav-mobile-leave-to
   transform: translateX(-100%)
+
+// Dialog
+.dialog-enter-active, .dialog-leave-active
+  transition-property: opacity, transform
+  transition-duration: 5000ms
+
+.dialog-enter-active
+  transition-timing-function: ease-out
+
+.dialog-leave-active
+  transition-timing-function: ease-in
+
+.dialog-enter, .dialog-leave-to
+  opacity: 0
+  transform: translateX(100%)

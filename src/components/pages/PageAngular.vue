@@ -1,11 +1,11 @@
 <template>
   <app-content-landing>
     <div slot="jumbotron">
-      <h1>Need React and Redux Developers?</h1>
-      <strong>Salsita is the World's premiere React consultancy.</strong>
+      <h1>Our experienced AngularJS developers</h1>
+      <strong>tackle the most complex challenges</strong>
     </div>
     <div slot="introduction">
-      <h2>INTRODUCTION REACT OVERRIDE</h2>
+      <h2>INTRODUCTION ANGULAR OVERRIDE</h2>
     </div>
   </app-content-landing>
 </template>
@@ -14,12 +14,12 @@
 import AppContentLanding from '@/components/AppContentLanding'
 
 export default {
-  name: 'page-react',
+  name: 'page-angular',
   components: {
     AppContentLanding
   },
   metaInfo: {
-    title: 'React Developers'
+    title: 'Angular Developers'
   }
 }
 </script>

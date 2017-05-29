@@ -1,6 +1,12 @@
 <template>
   <app-content-landing>
-    <h1 slot="jumbotron">{{ msg }}</h1>
+    <div slot="jumbotron">
+      <h1>Need React and Redux Developers?</h1>
+      <strong>Salsita is the World's premiere React consultancy.</strong>
+    </div>
+    <div slot="introduction">
+      <h2>INTRODUCTION REACT OVERRIDE</h2>
+    </div>
   </app-content-landing>
 </template>
 
@@ -13,12 +19,7 @@ export default {
     AppContentLanding
   },
   metaInfo: {
-    title: 'HOME'
-  },
-  data () {
-    return {
-      msg: 'Welcome to Homepage!'
-    }
+    title: 'Toppest Software Gore'
   }
 }
 </script>
