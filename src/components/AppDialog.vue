@@ -43,15 +43,15 @@ export default {
       const index = Projects.findIndex((prj) => prj.id === this.$route.params.slide)
       return index > -1 ? index : 0
     },
-    getProjectByIndex () {
+    getProjectName () {
       const index = this.$refs.flickity.selectedIndex() || 0
       return Projects[index].id
     },
     updateRoute () {
       if (!this.$route.params.slide) {
-        this.$router.replace(`${this.$route.path}/${this.getProjectByIndex()}`)
+        this.$router.replace(`${this.$route.path}/${this.getProjectName()}`)
       } else {
-        this.$router.replace(this.getProjectByIndex())
+        this.$router.replace(this.getProjectName())
       }
     }
   }
