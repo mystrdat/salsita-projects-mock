@@ -20,9 +20,9 @@ export default {
   components: {
     FlickityCarousel
   },
-  mounted () {
+  activated () {
     this.updateRoute()
-    this.$refs.flickity.on('settle', () => this.updateRoute())
+    this.$refs.flickity.on('settle', this.updateRoute)
   },
   data () {
     return {
@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     closeDialog () {
+      this.$refs.flickity.off('settle', this.updateRoute)
       this.$router.push(this.$route.matched[0].path)
     },
     getProjectIndex () {
