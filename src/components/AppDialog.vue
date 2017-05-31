@@ -1,47 +1,57 @@
 <template>
   <dialog-container>
-    <button class="close" @click="closeDialog">Close this hogfuck</button>
-    <h2>
-      {{ $route.params.slide || 'Defaulto' }}
-    </h2>
-    <p class="description">
-      Servus! Das Kastrat bauchpinseln das adrett Schäferstündchen. Die Rädelsführer friemeln der garstig Personenvereinzelungsanlage. Pranger und Wendehals flanieren bierernst Schmock.
-    </p>
-    <carousel :paginationEnabled="false">
-      <slide>
-        Slide 1 Content
-      </slide>
-      <slide>
-        Slide 2 Content
-      </slide>
-      <slide>
-        Slide 3 Content
-      </slide>
-      <slide>
-        Slide 4 Content
-      </slide>
-      <slide>
-        Slide 5 Content
-      </slide>
-      <slide>
-        Slide 6 Content
-      </slide>
-    </carousel>
+    <button class="close" @click="closeDialog">Close</button>
+    <flickity-carousel ref="flickity" :options="flickityOptions">
+      <div v-for="project in projects" class="carousel-cell">
+        <h2>{{ project.title }}</h2>
+        <p class="description">{{ project.description }}</p>
+        <div class="video" v-bind:style="{ backgroundImage: `url(${project.poster})` }"></div>
+      </div>
+    </flickity-carousel>
   </dialog-container>
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue-carousel'
+import FlickityCarousel from '@/components/elements/FlickityCarousel'
+import Projects from '@/constants/projects'
 
 export default {
   name: 'app-dialog',
   components: {
-    Carousel,
-    Slide
+    FlickityCarousel
+  },
+  mounted () {
+    this.updateRoute()
+    this.$refs.flickity.on('settle', () => this.updateRoute())
+  },
+  data () {
+    return {
+      projects: Projects,
+      flickityOptions: {
+        initialIndex: this.getProjectIndex(),
+        prevNextButtons: false,
+        pageDots: false
+      }
+    }
   },
   methods: {
     closeDialog () {
       this.$router.push(this.$route.matched[0].path)
+    },
+    getProjectIndex () {
+      const index = Projects.findIndex((prj) => prj.id === this.$route.params.slide)
+      return index > -1 ? index : 0
+    },
+    getProjectByIndex () {
+      const index = this.$refs.flickity.selectedIndex() || 0
+      return Projects[index].id
+    },
+    updateRoute () {
+      if (!this.$route.params.slide) {
+        this.$router.replace(`${this.$route.path}/${this.getProjectByIndex()}`)
+      } else {
+        this.$router.replace(this.getProjectByIndex())
+      }
     }
   }
 }
@@ -53,7 +63,7 @@ export default {
 dialog-container
   +fix(0 $headerHeight 0 0)
   display: block
-  background-color: rgba(0,0,0,0.8)
+  background-color: rgba(0,0,0,0.9)
   will-change: transform
   z-index: 1000
   color: #fff
@@ -61,15 +71,24 @@ dialog-container
   +media('<tablet')
     top: $headerHeightMobile
 
+  .flickity-enabled
+    +abs(left center)
+    width: 100%
+    height: 100%
+    max-height: 70%
+
+    .carousel-cell
+      position: relative
+      width: 100%
+      max-width: $contentMaxWidth
+      margin-right: 70px
+
+    .video
+      +aspect-ratio(16, 9)
+      background-position: 0 0
+      background-repeat: no-repeat
+      background-size: cover
+
 button
   color: #fff
-</style>
-
-<style lang="sass">
-// Carousel
-.VueCarousel
-  height: 400px
-
-.VueCarousel-wrapper
-  height: 100%
 </style>

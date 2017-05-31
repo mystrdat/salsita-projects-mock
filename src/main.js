@@ -20,7 +20,8 @@ Vue.config.ignoredElements = [
   'view-container',
   'dialog-container',
   'grid-container',
-  'parallax-container'
+  'parallax-container',
+  'app-carousel'
 ]
 
 new Vue({
