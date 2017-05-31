@@ -73,3 +73,15 @@ button
     .dot3
       opacity: 0.4
 
+  &.close
+    +hide-text
+    display: block
+    width: 60px
+    height: 60px
+    background: url(assets/img/icon-close.svg) no-repeat 50% / 24px auto
+    transition: transform $transitionDuration ease-out
+
+    &:hover
+      transform: rotate(-90deg) scale(0.8)
+      opacity: 0.6
+

@@ -27,7 +27,9 @@
     <partial-offices></partial-offices>
     <portal to="app-root">
       <transition name="dialog">
-        <router-view></router-view>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </transition>
     </portal>
   </main>

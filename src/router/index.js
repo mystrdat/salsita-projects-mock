@@ -23,12 +23,10 @@ export default new Router({
       children: [
         {
           path: 'projects',
-          name: 'dialog',
           component: AppDialog
         },
         {
           path: 'projects/:slide',
-          name: 'dialog',
           component: AppDialog
         }
       ]

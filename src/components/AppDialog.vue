@@ -1,6 +1,5 @@
 <template>
   <dialog-container>
-    <button class="close" @click="closeDialog">Close</button>
     <flickity-carousel ref="flickity" :options="flickityOptions">
       <div v-for="project in projects" class="carousel-cell">
         <h2>{{ project.title }}</h2>
@@ -8,6 +7,7 @@
         <div class="video" v-bind:style="{ backgroundImage: `url(${project.poster})` }"></div>
       </div>
     </flickity-carousel>
+    <button class="close" @click="closeDialog">Close</button>
   </dialog-container>
 </template>
 
@@ -89,6 +89,8 @@ dialog-container
       background-repeat: no-repeat
       background-size: cover
 
-button
+.close
+  +abs(40px)
   color: #fff
+
 </style>
