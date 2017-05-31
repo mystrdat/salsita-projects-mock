@@ -30,7 +30,7 @@
 // Dialog
 .dialog-enter-active, .dialog-leave-active
   transition-property: opacity, transform
-  transition-duration: 5000ms
+  transition-duration: 400ms
 
 .dialog-enter-active
   transition-timing-function: ease-out
@@ -40,4 +40,5 @@
 
 .dialog-enter, .dialog-leave-to
   opacity: 0
-  transform: translateX(100%)
+  transform: translateY(20%) rotateY(-20deg)
+  transform-origin: 50% 100%

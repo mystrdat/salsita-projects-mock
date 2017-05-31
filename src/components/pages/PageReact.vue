@@ -6,6 +6,8 @@
     </div>
     <div slot="introduction">
       <h2>INTRODUCTION REACT OVERRIDE</h2>
+      <router-link to="/react">React</router-link>
+      <router-link to="projects" append>Projects</router-link>
     </div>
   </app-content-landing>
 </template>

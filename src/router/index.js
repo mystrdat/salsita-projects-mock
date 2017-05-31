@@ -12,16 +12,22 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: PageHome
     },
     {
       path: '/react',
-      name: 'React',
+      name: 'react',
       component: PageReact,
       children: [
         {
           path: 'projects',
+          name: 'dialog',
+          component: AppDialog
+        },
+        {
+          path: 'projects/:slide',
+          name: 'dialog',
           component: AppDialog
         }
       ]

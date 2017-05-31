@@ -5,7 +5,7 @@
       <router-view></router-view>
       <app-footer></app-footer>
     </view-container>
-    <portal-target name="app-root"></portal-target>
+    <portal-target name="app-root" slim></portal-target>
   </app-container>
 </template>
 
@@ -42,12 +42,14 @@ export default {
   },
   methods: {
     setViewClass (matchedRoutes) {
-      console.log(matchedRoutes)
-      this.viewClass = Array.from(matchedRoutes).reduce((chain, route) => {
-        if (route.name) {
-          return chain + ` ${route}`
-        }
-      })
+      if (matchedRoutes.length > 0) {
+        this.viewClass = Array.from(matchedRoutes).reduce((cls, route) => {
+          if (route.name) {
+            cls[`view-${route.name.toLowerCase()}`] = true
+          }
+          return cls
+        }, {})
+      }
     },
     initSkrollr () {
       s = skrollr.init({
