@@ -10,14 +10,14 @@
           <li><a href="//www.salsitasoft.com/about-us"><span>About Us</span></a></li>
           <li><a href="//www.salsitasoft.com/careers"><span>Careers</span></a></li>
           <li><a href="//blog.salsitasoft.com/"><span>Blog</span></a></li>
-          <li><a v-scroll-to="contactScrollTo"><span>Contact Us</span></a></li>
+          <li><a @click="scrollToContact"><span>Contact Us</span></a></li>
         </ul>
       </nav>
     </div>
     <div class="mobile" v-if="$mq.resize && $mq.below('767px')">
       <router-link class="salsita" to="/">Salsita Software<dynamic-logo></dynamic-logo></router-link>
       <button class="hamburger" @click="toggleNav" v-bind:class="{ active: mobileNavOpen }">Open navigation<span></span></button>
-      <button class="contact" v-scroll-to="contactScrollTo">Contact us<contact-icon></contact-icon></button>
+      <button class="contact" @click="scrollToContact">Contact us<contact-icon></contact-icon></button>
       <transition name="nav-mobile">
         <nav v-if="mobileNavOpen">
           <ul>
@@ -27,7 +27,7 @@
             <li><a href="//www.salsitasoft.com/about-us"><span>About Us</span></a></li>
             <li><a href="//www.salsitasoft.com/careers"><span>Careers</span></a></li>
             <li><a href="//blog.salsitasoft.com/"><span>Blog</span></a></li>
-            <li><a v-scroll-to="contactScrollTo"><span>Contact Us</span></a></li>
+            <li><a @click="scrollToContact"><span>Contact Us</span></a></li>
           </ul>
         </nav>
       </transition>
@@ -48,10 +48,6 @@ export default {
   data () {
     return {
       mobileNavOpen: false,
-      contactScrollTo: {
-        el: 'section.contact',
-        offset: -60
-      },
       skrollrHeader: {
         'data-anchor-target': '.jumbotron',
         'data-top': 'background-color: rgba(17, 17, 17, 0); color: rgb(255, 255, 255); box-shadow: 0 0 5px rgba(0, 0, 0, 0)',
@@ -69,6 +65,10 @@ export default {
   methods: {
     toggleNav () {
       this.mobileNavOpen = !this.mobileNavOpen
+    },
+    scrollToContact () {
+      this.mobileNavOpen = false
+      this.$scrollTo('section.contact', 800, { offset: -60 })
     }
   }
 }
