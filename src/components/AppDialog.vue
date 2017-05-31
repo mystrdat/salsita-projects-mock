@@ -83,6 +83,11 @@ dialog-container
       width: 100%
       max-width: $contentMaxWidth
       margin-right: 70px
+      opacity: 0.25
+      transition: opacity $transitionDuration linear
+
+      &.is-selected
+        opacity: 1
 
     .video
       +aspect-ratio(16, 9)
